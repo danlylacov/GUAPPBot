@@ -27,3 +27,12 @@ class DocumentExamplesStates(StatesGroup):
     OCH = State()
     ZAOCH = State()
     EV = State()
+
+
+class ReceptionCalendarStates(StatesGroup):
+    MENU = State()
+    BUGET = State()
+    CONTRACT = State()
+    QUOTA = State()
+    OLIMPIADS = State()
+    OPEN_DAYS = State()
