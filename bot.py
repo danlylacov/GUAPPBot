@@ -5,6 +5,7 @@ import logging
 from handlers.main_menu_handlers import *
 from handlers.submtion_aplication import *
 from handlers.reception_calendar import *
+from handlers.other import *
 
 
 logging.basicConfig(level=logging.INFO)
@@ -23,6 +24,12 @@ dp.register_callback_query_handler(document_examples, state=DocumentExamplesStat
 dp.register_message_handler(document_examples_back, state=DocumentExamplesStates.MENU)
 
 dp.register_message_handler(process_reception_calendar_menu, state=ReceptionCalendarStates.MENU)
+
+dp.register_message_handler(process_other_menu, state=OtherStates.MENU)
+dp.register_message_handler(process_dormitories, state=OtherStates.DORMITORIES)
+dp.register_message_handler(process_lgotnoe, state=OtherStates.LGOTNOE)
+dp.register_message_handler(process_military, state=OtherStates.MILITARY)
+dp.register_message_handler(process_military_state, state=OtherStates.MILITARY_STATE)
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)

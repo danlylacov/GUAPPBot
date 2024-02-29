@@ -5,9 +5,10 @@ from aiogram.dispatcher import FSMContext
 
 from bot_instance import bot
 from keyboards import start_keyboard, submittting_aplication_keyboard, document_examples_keyboard, back_keyboard
-from states import MenuStates, SubmitttingAplicationStates, ReceptionCalendarStates
+from states import MenuStates, SubmitttingAplicationStates, ReceptionCalendarStates, OtherStates
 from .submtion_aplication import submiting_aplication_menu
 from .reception_calendar import reception_calendar_menu
+from .other import other_menu
 
 
 
@@ -23,6 +24,11 @@ async def process_menu(message: types.Message, state: FSMContext):
     if message.text == "Календарь приема":
         await ReceptionCalendarStates.MENU.set()
         await reception_calendar_menu(message, state)
+
+
+    if message.text == "Другое":
+        await OtherStates.MENU.set()
+        await other_menu(message, state)
 
 
 

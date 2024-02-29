@@ -31,8 +31,12 @@ class DocumentExamplesStates(StatesGroup):
 
 class ReceptionCalendarStates(StatesGroup):
     MENU = State()
-    BUGET = State()
-    CONTRACT = State()
-    QUOTA = State()
-    OLIMPIADS = State()
-    OPEN_DAYS = State()
+
+
+class OtherStates(StatesGroup):
+    MENU = State()
+    DORMITORIES = State()
+    LGOTNOE = State()
+    MILITARY = State()
+    MILITARY_STATE = State()
+

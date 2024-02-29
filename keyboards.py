@@ -45,3 +45,67 @@ reception_calendar_keyboard.row(*reception_calendar_buttons)
 reception_calendar_keyboard.row(types.KeyboardButton("Даты проведения олимпиад"))
 reception_calendar_keyboard.row(types.KeyboardButton("Дни открытых дверей"))
 reception_calendar_keyboard.add(back_button)
+
+
+
+other_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+other_keyboard.row(types.KeyboardButton("Общежития"), types.KeyboardButton("Льготное"))
+other_keyboard.row(types.KeyboardButton("Военная кафедра"), types.KeyboardButton("Воинский учет"))
+other_keyboard.row(back_button)
+
+
+dormitories_keyboard = types.ReplyKeyboardMarkup()
+dormitories_buttons = [
+    types.KeyboardButton("Какие общежития есть?"),
+    types.KeyboardButton("Документы для общежития"),
+    types.KeyboardButton("По какому принципу дают общежитие"),
+    types.KeyboardButton("Условия предоставления общежития"),
+    back_button
+]
+for button in dormitories_buttons:
+    dormitories_keyboard.add(button)
+
+
+dormitories_geo_keyboard = types.InlineKeyboardMarkup()
+dormitories_geo_buttons = [
+    types.InlineKeyboardButton("пр. Маршала Жукова, д. 24", callback_data="1"),
+    types.InlineKeyboardButton("ул. Передовиков, д. 13", callback_data="2"),
+    types.InlineKeyboardButton("ул. Варшавская, д. 8", callback_data="3"),
+    types.InlineKeyboardButton("MCГ", callback_data="4"),
+    types.InlineKeyboardButton("на ул. Кузнецовской", callback_data="5")
+]
+for button in dormitories_geo_buttons:
+    dormitories_geo_keyboard.add(button)
+
+
+lgotnoe_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+lgotnoe_keyboard.add(types.KeyboardButton("Кто может претендовать?"), types.KeyboardButton("Какие документы нужно предоставить?"))
+lgotnoe_keyboard.add(back_button)
+
+
+military_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+military_buttons = [
+    types.KeyboardButton("Как поступить на военную кафедру?"),
+    types.KeyboardButton("Когда заканчивается срок приёма документов?"),
+    types.KeyboardButton("Какие нормативы нужно пройти для поступления?"),
+    types.KeyboardButton("Какие документы нужны для поступления на военную кафедру?"),
+    types.KeyboardButton("Какие документы нужно предоставить военкомату?"),
+    back_button
+]
+for button in military_buttons:
+    military_keyboard.add(button)
+
+
+military_state_keyboard = types.ReplyKeyboardMarkup()
+military_state_buttons = [
+    types.KeyboardButton("Нужно ли предоставлять приписное удостоверение или военный билет при подаче документов и для зачисления на 1 курс?"),
+    types.KeyboardButton("Как найти второй отдел?"),
+    types.KeyboardButton("В процессе зачисления или сразу после него нужно ли сниматься с учета в военкомате по месту регистрации?"),
+    types.KeyboardButton("Какие документы нужно предоставить военкомату/ второму отделу?"),
+    types.KeyboardButton("Как встать на воинский учёт?"),
+    back_button
+]
+for button in military_state_buttons:
+    military_state_keyboard.add(button)
+
+
