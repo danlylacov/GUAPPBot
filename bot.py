@@ -6,6 +6,8 @@ from handlers.main_menu_handlers import *
 from handlers.submtion_aplication import *
 from handlers.reception_calendar import *
 from handlers.other import *
+from handlers.faq import *
+from handlers.directions import *
 
 
 logging.basicConfig(level=logging.INFO)
@@ -30,6 +32,10 @@ dp.register_message_handler(process_dormitories, state=OtherStates.DORMITORIES)
 dp.register_message_handler(process_lgotnoe, state=OtherStates.LGOTNOE)
 dp.register_message_handler(process_military, state=OtherStates.MILITARY)
 dp.register_message_handler(process_military_state, state=OtherStates.MILITARY_STATE)
+
+dp.register_message_handler(process_faq_menu, state=FAQStates.MENU)
+
+dp.register_message_handler(process_directions_menu, state=DirectonsStates.MENU)
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)

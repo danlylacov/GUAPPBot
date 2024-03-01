@@ -1,5 +1,7 @@
 from aiogram import types
 
+from db import Institutes
+
 back_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
 back_button = types.KeyboardButton("Назад")
 back_keyboard.add(back_button)
@@ -11,6 +13,8 @@ button3 = types.KeyboardButton("Календарь приема")
 button4 = types.KeyboardButton("ЕГЭ")
 button5 = types.KeyboardButton("Другое")
 button6 = types.KeyboardButton("FAQ")
+button7 = types.KeyboardButton("Направления подготовки")
+start_keyboard.add("Направления подготовки")
 start_keyboard.row(button1, button4, button5, button6)
 start_keyboard.add(button2, button3)
 
@@ -107,5 +111,34 @@ military_state_buttons = [
 ]
 for button in military_state_buttons:
     military_state_keyboard.add(button)
+
+
+
+faq_keyboard = types.ReplyKeyboardMarkup()
+faq_buttons = [
+    types.KeyboardButton("Нужен ли мед осмотр?"),
+    types.KeyboardButton("Нужна ли справка 086-У?"),
+    types.KeyboardButton("Сколько баллов ЕГЭ по предмету необходимо набрать, чтобы воспользоваться правом поступления «без вступительных испытаний»?"),
+    types.KeyboardButton("Если одинаковое количество баллов?"),
+    types.KeyboardButton("Можно ли перевестись на бюджет с платного?"),
+    types.KeyboardButton("Что делать если нет отчества?"),
+    types.KeyboardButton("Имеет ли значение дата подачи заявления при одинаковых баллах?"),
+    types.KeyboardButton("Как проходит конкурс?"),
+    types.KeyboardButton("Какие есть формы обучения?"),
+    back_button
+]
+for button in faq_buttons:
+    faq_keyboard.add(button)
+
+
+
+institutes_keyboard = types.InlineKeyboardMarkup()
+instittuteDB = Institutes()
+names = instittuteDB.get_names()
+print(names)
+for i in range(len(names)):
+    institutes_keyboard.add(types.InlineKeyboardButton(f"{names[i][0]}", callback_data=f'{i}'))
+
+
 
 

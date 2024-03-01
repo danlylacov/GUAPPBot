@@ -40,3 +40,11 @@ class OtherStates(StatesGroup):
     MILITARY = State()
     MILITARY_STATE = State()
 
+
+class FAQStates(StatesGroup):
+    MENU = State()
+
+
+class DirectonsStates(StatesGroup):
+    MENU = State()
+
