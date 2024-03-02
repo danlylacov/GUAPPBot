@@ -52,6 +52,10 @@ class Institutes(Database):
         data = self.cur.execute("SELECT Name FROM Institutes").fetchall()
         return data
 
+    def get_ids(self):
+        data = self.cur.execute("SELECT id FROM Institutes").fetchall()
+        return data
+
 
 class Directions(Database):
     def __init__(self):
@@ -68,13 +72,23 @@ class Directions(Database):
                         );""")
         self.db.commit()
 
+    def get_names_by_institute(self, institute_id):
+        data = self.cur.execute("SELECT NAME FROM Directions WHERE institute_id = ?", (institute_id,)).fetchall()
+        return data
+
+    def get_ids(self):
+        data = self.cur.execute("SELECT id FROM Directions").fetchall()
+        return data
+
+
+
 
 
 class Focus(Database):
     def __init__(self):
         super().__init__()
         self.cur.execute("""
-                            CREATE TABLE "Focus" (
+                            CREATE TABLE IF NOT EXISTS "Focus" (
                                 "id"	INTEGER NOT NULL,
                                 "name"	TEXT,
                                 "direction_id"	TEXT NOT NULL,
@@ -88,3 +102,8 @@ class Focus(Database):
                                 PRIMARY KEY("id" AUTOINCREMENT)
                             );""")
         self.db.commit()
+
+
+    def get_names_by_direction(self, direction_id):
+        data = self.cur.execute("SELECT name FROM Focus WHERE direction_id = ?", (direction_id)).fetchall()
+        return data

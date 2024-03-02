@@ -35,7 +35,9 @@ dp.register_message_handler(process_military_state, state=OtherStates.MILITARY_S
 
 dp.register_message_handler(process_faq_menu, state=FAQStates.MENU)
 
-dp.register_message_handler(process_directions_menu, state=DirectonsStates.MENU)
+dp.register_callback_query_handler(process_directions_menu, state=DirectonsStates.MENU)
+dp.register_callback_query_handler(show_directions, state=DirectonsStates.DIRECTIONS)
+dp.register_callback_query_handler(show_focus, state=DirectonsStates.FOCUS)
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)

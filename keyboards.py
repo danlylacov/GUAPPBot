@@ -137,7 +137,7 @@ instittuteDB = Institutes()
 names = instittuteDB.get_names()
 print(names)
 for i in range(len(names)):
-    institutes_keyboard.add(types.InlineKeyboardButton(f"{names[i][0]}", callback_data=f'{i}'))
+    institutes_keyboard.add(types.InlineKeyboardButton(f"{names[i][0]}", callback_data=f'{i+1}'))
 
 
 

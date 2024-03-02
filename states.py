@@ -47,4 +47,6 @@ class FAQStates(StatesGroup):
 
 class DirectonsStates(StatesGroup):
     MENU = State()
+    DIRECTIONS = State()
+    FOCUS = State()
 
