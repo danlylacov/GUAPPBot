@@ -9,6 +9,9 @@ from handlers.other import *
 from handlers.faq import *
 from handlers.directions import *
 
+from bot_instance import bot
+
+
 
 logging.basicConfig(level=logging.INFO)
 

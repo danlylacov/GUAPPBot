@@ -6,6 +6,9 @@ back_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
 back_button = types.KeyboardButton("Назад")
 back_keyboard.add(back_button)
 
+back_inline_keyboard = types.InlineKeyboardMarkup()
+back_inline_keyboard.add(types.InlineKeyboardButton("Back", callback_data="404"))
+
 start_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
 button1 = types.KeyboardButton("ИИ")
 button2 = types.KeyboardButton("Подача заявления")
@@ -135,10 +138,9 @@ for button in faq_buttons:
 institutes_keyboard = types.InlineKeyboardMarkup()
 instittuteDB = Institutes()
 names = instittuteDB.get_names()
-print(names)
 for i in range(len(names)):
     institutes_keyboard.add(types.InlineKeyboardButton(f"{names[i][0]}", callback_data=f'{i+1}'))
-
+institutes_keyboard.add(types.InlineKeyboardButton("Назад", callback_data="404"))
 
 
 
