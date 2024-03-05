@@ -13,6 +13,9 @@ from handlers.EGE import process_callback
 
 from bot_instance import bot
 
+from bot_instance import bot
+
+
 
 logging.basicConfig(level=logging.INFO)
 
