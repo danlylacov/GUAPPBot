@@ -7,8 +7,6 @@ class Database():
 
 
 
-
-
 class EnterCalendar(Database):
     def __init__(self):
         super().__init__()
@@ -56,6 +54,10 @@ class Institutes(Database):
         data = self.cur.execute("SELECT id FROM Institutes").fetchall()
         return data
 
+    def get_all_institutes_by_id(self, institute_id):
+        data = self.cur.execute("SELECT * FROM Institutes WHERE id=?", (institute_id,)).fetchone()
+        return data
+
 
 class Directions(Database):
     def __init__(self):
@@ -81,6 +83,17 @@ class Directions(Database):
         return data
 
 
+    def get_name_description_price_by_id(self, id):
+        data = self.cur.execute("SELECT name, description, price FROM Directions WHERE id = ?", (id, )).fetchone()
+        return data
+
+    def get_all_info_by_id(self, direction_id):
+        data = self.cur.execute("SELECT * FROM Directions WHERE id = ?", (direction_id)).fetchone()
+        return data
+
+
+
+
 
 
 
@@ -98,6 +111,7 @@ class Focus(Database):
                                 "calendar_schedule"	TEXT,
                                 "documents"	TEXT,
                                 "passing_points"	INT,
+                                "subjects" TEXT,
                                 FOREIGN KEY("direction_id") REFERENCES "Directions"("id"),
                                 PRIMARY KEY("id" AUTOINCREMENT)
                             );""")
@@ -105,5 +119,36 @@ class Focus(Database):
 
 
     def get_names_by_direction(self, direction_id):
-        data = self.cur.execute("SELECT name FROM Focus WHERE direction_id = ?", (direction_id)).fetchall()
+        data = self.cur.execute("SELECT name, id FROM Focus WHERE direction_id = ?", (direction_id, )).fetchall()
         return data
+
+    def get_all_ids(self):
+        data = self.cur.execute('SELECT id FROM Focus').fetchall()
+        return data
+
+    def get_all_info(self, passing_points):
+        data = self.cur.execute(f"SELECT name, direction_id, description, passing_points, subjects FROM Focus WHERE passing_points > {passing_points}").fetchall()
+        return data
+
+    def get_info_by_id(self, focus_id):
+        focus_info = self.cur.execute("SELECT * FROM Focus WHERE id = ?", (focus_id, )).fetchone()
+        directionDB = Directions()
+        direction_info = directionDB.get_all_info_by_id(focus_info[2])
+        instituteDB = Institutes()
+        institute_info = instituteDB.get_all_institutes_by_id(direction_info[2])
+        return {
+                'direction': direction_info[3],
+                'focus': focus_info[1],
+                'institute': institute_info[1],
+                'passing_points': focus_info[8],
+                'passing_points_contract': focus_info[9],
+                'subjects': focus_info[-1],
+                'price': direction_info[-1],
+                'specification': focus_info[4],
+                'learning_plan': focus_info[5],
+                'calendar_chedule': focus_info[6],
+                'documents': focus_info[7]
+        }
+
+
+

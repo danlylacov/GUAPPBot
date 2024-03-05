@@ -14,11 +14,11 @@ async def reception_calendar_menu(message: types, state: FSMContext):
 
 async def process_reception_calendar_menu(message: types, state: FSMContext):
     if message.text == "Дни открытых дверей":
-        await bot.send_message(message.chat.id, "Дни открытых дверей")
+        await bot.send_message(message.chat.id, "🛠 Данный раздел пока находится в разработке 🛠")
         # прописать парсер с проверкой даты
 
     if message.text == "Даты проведения олимпиад":
-        pass
+        await bot.send_message(message.chat.id, "🛠 Данный раздел пока находится в разработке 🛠")
         # сделать парсер с оф сайта
 
     if message.text == "Бюджет":

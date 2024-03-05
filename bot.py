@@ -8,6 +8,10 @@ from handlers.reception_calendar import *
 from handlers.other import *
 from handlers.faq import *
 from handlers.directions import *
+from handlers.elastic_handlers import *
+from handlers.EGE import process_callback
+
+from bot_instance import bot
 
 
 logging.basicConfig(level=logging.INFO)
@@ -38,6 +42,12 @@ dp.register_message_handler(process_faq_menu, state=FAQStates.MENU)
 dp.register_callback_query_handler(process_directions_menu, state=DirectonsStates.MENU)
 dp.register_callback_query_handler(show_directions, state=DirectonsStates.DIRECTIONS)
 dp.register_callback_query_handler(show_focus, state=DirectonsStates.FOCUS)
+
+dp.register_message_handler(process_message, state=ElasticSearchStates.ASK_QUESTION)
+dp.register_callback_query_handler(answer_question, state=ElasticSearchStates.ANSWER_QUESTION)
+
+
+dp.register_callback_query_handler(process_callback, lambda query: query.data.startswith('answer_'), state=EGEStates.ASK_POINTS)
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)

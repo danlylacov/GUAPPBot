@@ -6,16 +6,20 @@ back_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
 back_button = types.KeyboardButton("Назад")
 back_keyboard.add(back_button)
 
+back_inline_keyboard = types.InlineKeyboardMarkup()
+back_inline_keyboard.add(types.InlineKeyboardButton("Back", callback_data="404"))
+
 start_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-button1 = types.KeyboardButton("ИИ")
+button1 = types.KeyboardButton("Задать вопрос виртуальному ассистенту")
 button2 = types.KeyboardButton("Подача заявления")
 button3 = types.KeyboardButton("Календарь приема")
 button4 = types.KeyboardButton("ЕГЭ")
 button5 = types.KeyboardButton("Другое")
 button6 = types.KeyboardButton("FAQ")
 button7 = types.KeyboardButton("Направления подготовки")
+start_keyboard.add(button1)
 start_keyboard.add("Направления подготовки")
-start_keyboard.row(button1, button4, button5, button6)
+start_keyboard.row( button4, button5, button6)
 start_keyboard.add(button2, button3)
 
 submittting_aplication_keyboard = types.ReplyKeyboardMarkup()
@@ -135,10 +139,12 @@ for button in faq_buttons:
 institutes_keyboard = types.InlineKeyboardMarkup()
 instittuteDB = Institutes()
 names = instittuteDB.get_names()
-print(names)
 for i in range(len(names)):
     institutes_keyboard.add(types.InlineKeyboardButton(f"{names[i][0]}", callback_data=f'{i+1}'))
+institutes_keyboard.add(types.InlineKeyboardButton("Назад", callback_data="404"))
 
 
+ege_keyboard = types.InlineKeyboardMarkup()
 
-
+ege_keyboard.add(types.InlineKeyboardButton(f"1", callback_data=f"answer_1"))
+ege_keyboard.add(types.InlineKeyboardButton(f"2", callback_data=f"answer_2"))

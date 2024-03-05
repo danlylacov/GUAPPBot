@@ -49,4 +49,13 @@ class DirectonsStates(StatesGroup):
     MENU = State()
     DIRECTIONS = State()
     FOCUS = State()
+    BACK = State()
 
+
+class ElasticSearchStates(StatesGroup):
+    ASK_QUESTION = State()
+    ANSWER_QUESTION = State()
+
+
+class EGEStates(StatesGroup):
+    ASK_POINTS = State()
