@@ -19,6 +19,7 @@ class ElasticSearch():
 
     def get_answer(self, question: str):
         get_json = requests.get(self.BASE_URL + question).json()
+        print(get_json)
         if get_json == []:
             return []
         else:

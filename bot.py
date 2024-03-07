@@ -1,9 +1,8 @@
-import time
+import asyncio
 
 from aiogram import Dispatcher, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 import logging
-
 from handlers.main_menu_handlers import *
 from handlers.submtion_aplication import *
 from handlers.reception_calendar import *
@@ -12,10 +11,8 @@ from handlers.faq import *
 from handlers.directions import *
 from handlers.elastic_handlers import *
 from handlers.EGE import *
-
 from bot_instance import bot
-
-from bot_instance import bot
+from Sheduled import main
 
 
 
@@ -61,6 +58,8 @@ dp.register_message_handler(get_points, state=EGEStates.GET_DOP_SUBJ_POINTS)
 if __name__ == '__main__':
     while True:
         try:
+            loop = asyncio.get_event_loop()
+            loop.create_task(main())
             executor.start_polling(dp, skip_updates=True)
         except:
             pass
