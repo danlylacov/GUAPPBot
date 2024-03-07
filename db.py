@@ -127,7 +127,7 @@ class Focus(Database):
         return data
 
     def get_all_info(self, passing_points):
-        data = self.cur.execute(f"SELECT name, direction_id, description, passing_points, subjects FROM Focus WHERE passing_points > {passing_points}").fetchall()
+        data = self.cur.execute(f"SELECT name, direction_id, description, passing_points_och, subjects FROM Focus WHERE passing_points_och < {passing_points}").fetchall()
         return data
 
     def get_info_by_id(self, focus_id):

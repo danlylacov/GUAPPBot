@@ -28,5 +28,3 @@ class ChoiseDirections():
         return result
 
 
-a = ChoiseDirections(["Математика", "Русский язык", "Информатика"], 210)
-print(a.get_directions())

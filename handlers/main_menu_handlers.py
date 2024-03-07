@@ -12,7 +12,7 @@ from .other import other_menu
 from .faq import faq_menu
 from .directions import directions_menu
 from .elastic_handlers import elastic_handler
-from .EGE import ask_points
+from .EGE import ask_points_rus
 
 
 async def send_welcome(message: types.Message, state: FSMContext):
@@ -49,8 +49,8 @@ async def process_menu(message: types.Message, state: FSMContext):
         await elastic_handler(message, state)
 
     if message.text == "ЕГЭ":
-        await EGEStates.ASK_POINTS.set()
-        await ask_points(message, state)
+        await EGEStates.ASK_POINTS_RUS.set()
+        await ask_points_rus(message, state)
 
 
 

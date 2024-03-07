@@ -58,4 +58,8 @@ class ElasticSearchStates(StatesGroup):
 
 
 class EGEStates(StatesGroup):
+    ASK_POINTS_RUS = State()
+    ASK_POINTS_MATH = State()
     ASK_POINTS = State()
+    ASK_DOP_SUBJ_POINTS = State()
+    GET_DOP_SUBJ_POINTS = State()

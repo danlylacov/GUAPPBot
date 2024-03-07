@@ -1,3 +1,5 @@
+import time
+
 from aiogram import Dispatcher, executor
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 import logging
@@ -9,7 +11,7 @@ from handlers.other import *
 from handlers.faq import *
 from handlers.directions import *
 from handlers.elastic_handlers import *
-from handlers.EGE import process_callback
+from handlers.EGE import *
 
 from bot_instance import bot
 
@@ -50,7 +52,15 @@ dp.register_message_handler(process_message, state=ElasticSearchStates.ASK_QUEST
 dp.register_callback_query_handler(answer_question, state=ElasticSearchStates.ANSWER_QUESTION)
 
 
-dp.register_callback_query_handler(process_callback, lambda query: query.data.startswith('answer_'), state=EGEStates.ASK_POINTS)
+dp.register_message_handler(process_ask_points_rus, state=EGEStates.ASK_POINTS_RUS)
+dp.register_callback_query_handler(ask_points_math, state=EGEStates.ASK_POINTS_MATH)
+dp.register_message_handler(process_ask_points_math, state=EGEStates.ASK_POINTS)
+dp.register_callback_query_handler(ask_points, state=EGEStates.ASK_DOP_SUBJ_POINTS)
+dp.register_message_handler(get_points, state=EGEStates.GET_DOP_SUBJ_POINTS)
 
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    while True:
+        try:
+            executor.start_polling(dp, skip_updates=True)
+        except:
+            pass

@@ -146,5 +146,22 @@ institutes_keyboard.add(types.InlineKeyboardButton("Назад", callback_data="
 
 ege_keyboard = types.InlineKeyboardMarkup()
 
-ege_keyboard.add(types.InlineKeyboardButton(f"1", callback_data=f"answer_1"))
-ege_keyboard.add(types.InlineKeyboardButton(f"2", callback_data=f"answer_2"))
+ege_keyboard.add(types.InlineKeyboardButton(f"Базовый", callback_data=f"answer_1"))
+ege_keyboard.add(types.InlineKeyboardButton(f"Профильный", callback_data=f"answer_2"))
+
+
+
+subject_keyboard = types.InlineKeyboardMarkup()
+subjects = [
+    "Иностранный язык",
+    "Литература",
+    "Обществознание",
+    "История",
+    "География",
+    "Биология",
+    "Химия",
+    "Физика",
+    "Информатика"
+]
+for sub in subjects:
+    subject_keyboard.add(types.InlineKeyboardButton(sub, callback_data=sub))
